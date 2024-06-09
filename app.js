@@ -80,12 +80,12 @@ app.put('/players/:playerId/', async (request, response) => {
   const {playerId} = request.params
   const updatedPlayerQuery = `
   UPDATE 
-   cricket_team
-   SET 
-   player_name = ${playerName}
+    cricket_team
+  SET 
+   player_name = "${playerName}"
    jersey_number = ${jerseyNumber}
-   role = ${role}
-   WHERE 
+   role = "${role}"
+  WHERE 
    player_id = ${playerId};
   `
 
@@ -96,10 +96,10 @@ app.put('/players/:playerId/', async (request, response) => {
 app.delete('/players/:playerId/', async (request, response) => {
   const {playerId} = request.params
   const deletePlayerQuery = `
-  DELETE FROM 
-  cricket_team 
+  DELETE FROM
+     cricket_team 
   WHERE 
-  player_id = ${playerId};
+     player_id = ${playerId};
   `
   await database.run(deletePlayerQuery)
   response.send('Player Removed')
